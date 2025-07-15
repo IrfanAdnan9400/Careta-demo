@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Careta.com - Rent Malaysian Cars</title>
+  <style>
+    body {
+      max-width: 500px;
+      margin: auto;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      padding: 16px;
+      line-height: 1.5;
+    }
+    h1 {
+      text-align: center;
+      color: #007AFF;
+    }
+    .logo {
+      max-width: 120px;
+      display: block;
+      margin: 0 auto 20px auto;
+    }
+    .field {
+      margin: 12px 0;
+    }
+    label {
+      display: block;
+      margin-bottom: 4px;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 1.1rem;
+      background: #007AFF;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      margin-top: 16px;
+    }
+    .car-list {
+      margin-top: 24px;
+    }
+    .car-item {
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+    .whatsapp {
+      display: block;
+      text-align: center;
+      margin: 24px 0;
+      color: #25D366;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <img src="careta-logo.png" alt="Careta Logo" class="logo" />
+  <h1>Careta.com 🚘 Rent Malaysian Cars</h1>
+
+  <form id="bookingForm">
+    <div class="field">
+      <label for="date">Pick-up Date</label>
+      <input type="date" id="date" required />
+    </div>
+    <div class="field">
+      <label for="car">Choose Car</label>
+      <select id="car" required>
+        <option value="" disabled selected>Select a car</option>
+        <option value="Perodua Myvi">Perodua Myvi – RM110/day</option>
+        <option value="Perodua Bezza">Perodua Bezza – RM120/day</option>
+        <option value="Proton Saga">Proton Saga – RM100/day</option>
+        <option value="Proton X50">Proton X50 – RM190/day</option>
+        <option value="Perodua Alza">Perodua Alza – RM160/day</option>
+        <option value="Proton X70">Proton X70 – RM250/day</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="pickup">Pick-up Location</label>
+      <input type="text" id="pickup" placeholder="e.g. KLIA Airport" required />
+    </div>
+
+    <button type="submit">Book Now</button>
+  </form>
+
+  <a id="whatsappLink" class="whatsapp" target="_blank" style="display:none;">
+    📲 Book via WhatsApp
+  </a>
+
+  <div class="car-list">
+    <h2>🚗 Available Cars</h2>
+    <div class="car-item">Perodua Myvi – RM110/day</div>
+    <div class="car-item">Perodua Bezza – RM120/day</div>
+    <div class="car-item">Proton Saga – RM100/day</div>
+    <div class="car-item">Proton X50 – RM190/day</div>
+    <div class="car-item">Perodua Alza – RM160/day</div>
+    <div class="car-item">Proton X70 – RM250/day</div>
+  </div>
+
+  <script>
+    document.getElementById('bookingForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const date = document.getElementById('date').value;
+      const car = document.getElementById('car').value;
+      const pickup = document.getElementById('pickup').value;
+      if (!date || !car || !pickup) return;
+
+      const message = `Careta Booking%0A• Date: ${date}%0A• Car: ${car}%0A• Pick-up: ${pickup}`;
+      const waLink = `https://wa.me/60123456789?text=${message}`;
+      const a = document.getElementById('whatsappLink');
+      a.href = waLink;
+      a.style.display = 'block';
+      a.textContent = '📲 Book via WhatsApp';
+      a.scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
+
+</body>
+</html>
